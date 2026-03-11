@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  # フロントエンド（Next.js）
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+  # バックエンド（Python / FastAPI）
+  backend:
+    image: python:3.11-slim
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    command: sh -c "pip install fastapi uvicorn && uvicorn main:app --host 0.0.0.0 --reload"
