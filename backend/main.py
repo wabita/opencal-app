@@ -18,26 +18,3 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"message": "Hello, your backend is working with CORS!"}
-
-
-_useless_counter = 0
-
-
-@app.get("/useless")
-def totally_useless_feature():
-    """
-    大して意味のないエンドポイント。
-    アクセス回数と、なんとなく今日のラッキーな数値を返すだけ。
-    """
-    global _useless_counter
-    _useless_counter += 1
-
-    lucky_number = random.randint(1, 999)
-    jitter = (time.time() % 1.0)  # 0〜1未満のどうでもいい値
-
-    return {
-        "message": "This endpoint is proudly useless.",
-        "visits": _useless_counter,
-        "lucky_number": lucky_number,
-        "jitter": round(jitter, 6),
-    }
