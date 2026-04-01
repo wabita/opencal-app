@@ -5,6 +5,8 @@ import time
 
 app = FastAPI()
 #ii
+
+
 # これを追加：フロントエンド（3000番）からのアクセスを許可する
 app.add_middleware(
     CORSMiddleware,
