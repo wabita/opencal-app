@@ -4,7 +4,7 @@ import random
 import time
 
 app = FastAPI()
-#iiiii
+#ii
 # これを追加：フロントエンド（3000番）からのアクセスを許可する
 app.add_middleware(
     CORSMiddleware,
